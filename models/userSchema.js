@@ -39,27 +39,24 @@ const userSchema = new mongoose.Schema({
   carts: Array,
 });
 // Hashing password and cpassword before saving
-userSchema.pre(
-  "save",
-  async function (next) {
-    if (this.isModified("password") || this.isModified("cpassword")) {
-      this.password = await bcrypt.hash(this.password, 8);
-      this.cpassword = await bcrypt.hash(this.cpassword, 8);
-    }
+userSchema.pre("save", async function (next) {
+  if (this.isModified("password") || this.isModified("cpassword")) {
+    this.password = await bcrypt.hash(this.password, 8);
+    this.cpassword = await bcrypt.hash(this.cpassword, 8);
+  }
 
-    next();
-  },
-);
+  next();
+}); 
 
 // add to cart data
-userSchema.methods.addcartdata = async function(cart){
+userSchema.methods.addcartdata = async function (cart) {
   try {
-      this.carts = this.carts.concat(cart);
-      await this.save();
-      return this.carts;
+    this.carts = this.carts.concat(cart);
+    await this.save();
+    return this.carts;
   } catch (error) {
-      console.log(error + "bhai cart add time aai error");
+    console.log(error + "bhai cart add time aai error");
   }
-}
+};
 const USER = new mongoose.model("USER", userSchema);
 module.exports = USER;

@@ -8,8 +8,8 @@ const getUser = async (req, res) => {
     }
     return res.status(200).json(validUser);
   } catch (error) {
-    console.error(error);
     return res.status(500).json({ message: "Internal server error" });
+    console.error(error);
   }
 };
 module.exports = { getUser };

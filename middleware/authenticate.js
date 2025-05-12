@@ -1,11 +1,9 @@
 const USER = require("../models/userSchema");
-const keysecret = process.env.KEY;
 const jwtProvider = require("../constant/jwtProvider");
 
 const authenticate = async (req, res, next) => {
   try {
-    // console.log("started");
-    // const token = req.cookies.Amazonweb;
+    // console.log("started");z
     const token = req.headers.authorization?.split(" ")[1];
     console.log("token", token);
     if (!token) {
@@ -20,7 +18,7 @@ const authenticate = async (req, res, next) => {
     req.token = token;
     req.user = user;
     req.userID = user._id;
-    next();
+    next(); 
   } catch (error) {
     res.status(401).send("Unauthorized:No token provided");
     console.log("error");

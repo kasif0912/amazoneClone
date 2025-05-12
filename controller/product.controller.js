@@ -6,7 +6,7 @@ const getAllProducts = async (req, res) => {
     // Fetch all products from the database
     const products = await Products.find();
     // Return the products in the response
-    res
+    return res
       .status(200)
       .json({ message: "Products retrieved successfully", products });
   } catch (error) {

@@ -12,4 +12,4 @@ const getUserIdFromToken = (token) => {
   // console.log(decodedToken.userId);
   return decodedToken.userId;
 };
-module.exports = {generateToken, getUserIdFromToken};
+module.exports = { generateToken, getUserIdFromToken };
